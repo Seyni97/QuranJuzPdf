@@ -1,0 +1,9 @@
+{
+    "routes": [
+      { "src": "/pdfs/(.*)", "dest": "/CoranJuzpdf/$1" }
+    ],
+    "builds": [
+      { "src": "server.js", "use": "@vercel/node" }
+    ]
+  }
+  
