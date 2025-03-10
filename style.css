@@ -1,39 +1,50 @@
-/* Style général */
+/* 🔹 Général */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     background: #f4f4f4;
 }
 
-/* Conteneur principal */
-.container {
-    display: flex;
-    width: 90%;
-    height: 90vh;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+/* 🔹 Menu Burger */
+.menu-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
 }
 
-/* Barre latérale (liste des parties) */
+#menu-btn {
+    font-size: 24px;
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* 🔹 Sidebar (menu déroulant) */
 .sidebar {
-    width: 30%;
-    background: #ddd;
-    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #222;
+    color: white;
     overflow-y: auto;
+    transition: left 0.3s;
+    padding: 20px;
 }
 
-.sidebar h2 {
-    text-align: center;
+.sidebar.open {
+    left: 0;
 }
 
-/* Liste des parties */
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -42,145 +53,76 @@ body {
 .sidebar li {
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid #bbb;
-    text-align: center;
-    background: white;
-    margin-bottom: 5px;
-    border-radius: 5px;
+    border-bottom: 1px solid #444;
 }
 
 .sidebar li:hover {
-    background: #bbb;
+    background: #444;
 }
 
-/* Conteneur PDF */
+/* 🔹 Footer du menu (e-mail + bouton quitter) */
+.menu-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.menu-footer a {
+    color: #f4f4f4;
+    text-decoration: none;
+}
+
+#quit-btn {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* 🔹 Conteneur du PDF */
 .pdf-container {
-    flex: 1;
-    padding: 20px;
+    width: 90%;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-/* Affichage du PDF */
+/* 🔹 Image d’accueil */
+#welcome-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+/* 🔹 Affichage PDF */
 iframe {
     width: 100%;
     height: 100%;
     border: none;
-}
-
-/* Mode responsive */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: 30%;
-        overflow-y: scroll;
-    }
-
-    .pdf-container {
-        height: 70%;
-    }
-}
-.sidebar li.active {
-    background: #4CAF50;
-    color: white;
-    font-weight: bold;
-}
-/* Bouton menu burger */
-#menu-btn {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    background: #333;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    z-index: 2000;
-}
-
-/* Menu latéral caché */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100vh;
-    background: white;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
-    transition: left 0.3s ease-in-out;
-    padding: 10px;
-    z-index: 1500;
-}
-
-/* Boutons À propos et Quitter */
-.sidebar button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: #f1f1f1;
-    margin-top: 5px;
-    cursor: pointer;
-}
-
-.sidebar button:hover {
-    background: #ddd;
-}
-
-/* Quand le menu est ouvert */
-.sidebar.open {
-    left: 0;
-}
-
-/* Mode plein écran */
-.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.fullscreen iframe {
-    width: 100%;
-    height: 100%;
-}
-
-.fullscreen #close-pdf {
-    display: block;
-}
-
-/* Écran de chargement */
-#loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
     display: none;
-    font-size: 18px;
-    font-weight: bold;
 }
-/* Image d’accueil */
-#welcome-image {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
+
+/* 🔹 Bouton de fermeture PDF */
+#close-pdf {
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    top: 10px;
+    right: 10px;
+    padding: 8px;
+    background: red;
+    color: white;
+    border: none;
+    display: none;
+    cursor: pointer;
+}
+
+/* 🔹 Mode responsive */
+@media (max-width: 768px) {
+    .pdf-container {
+        height: 85vh;
+    }
 }
