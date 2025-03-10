@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const pdfContainer = document.querySelector(".pdf-container");
     const sidebar = document.querySelector(".sidebar");
     const closeBtn = document.getElementById("close-pdf");
+    const menuBtn = document.getElementById("menu-btn");
+    const aboutBtn = document.getElementById("about-btn");
+    const exitBtn = document.getElementById("exit-btn");
+    const loading = document.getElementById("loading");
+    const welcomeImage = document.getElementById("welcome-image");
 
     // Liste des fichiers PDF avec leurs liens Dropbox (convertis en liens directs)
     const pdfFiles = [
@@ -41,15 +46,46 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Khatm Complet", file: "https://docs.google.com/gview?embedded=true&url=https://dl.dropboxusercontent.com/s/gxa5zdaykbdlowg/khatm%20complet.pdf" }
     ];
 
+    pdfFiles.forEach(pdf => {
+        const listItem = document.createElement("li");
+        listItem.textContent = pdf.name;
+        listItem.addEventListener("click", () => {
+            sidebar.classList.remove("open");
+            loading.style.display = "block";
+            welcomeImage.style.display = "none"; // Cacher l’image d’accueil
+    
+            setTimeout(() => {
+                pdfViewer.src = pdf.file;
+                pdfContainer.classList.add("fullscreen");
+                closeBtn.style.display = "block";
+                loading.style.display = "none";
+            }, 500);
+        });
+        pdfList.appendChild(listItem);
+    });
+    
+    // Réafficher l'image d'accueil quand on ferme le PDF
+    closeBtn.addEventListener("click", () => {
+        pdfContainer.classList.remove("fullscreen");
+        closeBtn.style.display = "none";
+        pdfViewer.src = "";
+        welcomeImage.style.display = "block"; // Réafficher l’image d’accueil
+    });
+
  // Affichage dynamique de la liste des fichiers PDF
  pdfFiles.forEach(pdf => {
     const listItem = document.createElement("li");
     listItem.textContent = pdf.name;
     listItem.addEventListener("click", () => {
-        pdfViewer.src = pdf.file; // Charger le PDF
-        pdfContainer.classList.add("fullscreen"); // Activer le mode plein écran
-        sidebar.style.display = "none"; // Cacher la liste
-        closeBtn.style.display = "block"; // Montrer le bouton retour
+        sidebar.classList.remove("open"); // Fermer le menu
+        loading.style.display = "block"; // Afficher le chargement
+        
+        setTimeout(() => {
+            pdfViewer.src = pdf.file; // Charger le PDF
+            pdfContainer.classList.add("fullscreen"); // Activer le mode plein écran
+            closeBtn.style.display = "block"; // Montrer le bouton retour
+            loading.style.display = "none"; // Cacher le chargement
+        }, 500); // Simulation du chargement (500ms)
     });
     pdfList.appendChild(listItem);
 });
@@ -57,8 +93,24 @@ document.addEventListener("DOMContentLoaded", function () {
 // Gérer la sortie du mode plein écran
 closeBtn.addEventListener("click", () => {
     pdfContainer.classList.remove("fullscreen");
-    sidebar.style.display = "block";
     closeBtn.style.display = "none";
     pdfViewer.src = ""; // Réinitialiser l'affichage
+});
+
+// Gérer le menu burger
+menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open"); // Ouvrir/Fermer le menu
+});
+
+// Afficher une alerte "À propos"
+aboutBtn.addEventListener("click", () => {
+    alert("Application de lecture du Coran en PDF. Développée par [Ton Nom]");
+});
+
+// Fermer l'application
+exitBtn.addEventListener("click", () => {
+    if (confirm("Voulez-vous quitter l'application ?")) {
+        window.close(); // Ferme l'onglet (ne fonctionne pas toujours sur mobile)
+    }
 });
 });
