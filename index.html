@@ -3,62 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture du Coran en PDF</title>
+    <title>Lecture du Coran</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="container">
-        <div class="sidebar">
-            <h2>Parties du Coran</h2>
+
+    <!-- Menu Burger -->
+    <div class="menu-container">
+        <button id="menu-btn">☰</button>
+        <div class="sidebar" id="sidebar">
             <ul id="pdf-list"></ul>
-        </div>
-        <div class="pdf-container">
-            <p id="loading-text" style="text-align: center; display: none;">Chargement...</p>
-
-            <iframe id="pdf-viewer" width="100%" height="600px"></iframe>
-            <ul id="pdf-list"></ul>
-
-        
-
+            <div class="menu-footer">
+                <p>📧 <a href="mailto:seyni017@gmail.com">seyni017@gmail.com</a></p>
+                <button id="quit-btn">🚪 Quitter</button>
+            </div>
         </div>
     </div>
-    <body>
-        <!-- Bouton menu burger -->
-        <button id="menu-btn">☰</button>
-    
-        <!-- Menu latéral -->
-        <div id="sidebar" class="sidebar">
-            <ul id="pdf-list"></ul>
-            <hr>
-            <button id="about-btn">ℹ️ seyni017@gmail.com</button>
-            <button id="exit-btn">❌ Quitter</button>
-        </div>
-    
-        <!-- Conteneur du PDF -->
-        <div class="pdf-container">
-            <button id="close-pdf">⬅ Retour</button>
-            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
-            <div id="loading">📂 Chargement...</div>
-        </div>
 
-        <div class="pdf-container">
-            <img id="welcome-image" src="Accueil.jpeg" alt="Bienvenue" />
-            <button id="close-pdf">⬅ Retour</button>
-            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
-            <div id="loading">📂 Chargement...</div>
-        </div>
-        
-    
-    
-    
-    
-    </body>
-    
-    
+    <!-- Zone d'affichage du PDF -->
+    <div class="pdf-container">
+        <img id="welcome-image" src="Accueil.jpeg" alt="Bienvenue">
+        <button id="close-pdf">⬅ Retour</button>
+        <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
+    </div>
 
-    
     <script src="script.js"></script>
-    
+
 </body>
 </html>
