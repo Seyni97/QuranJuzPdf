@@ -90,18 +90,52 @@ iframe {
     color: white;
     font-weight: bold;
 }
-/* Cache le bouton "Retour" au début */
-#close-pdf {
-    display: none;
-    position: absolute;
+/* Bouton menu burger */
+#menu-btn {
+    position: fixed;
     top: 10px;
     left: 10px;
-    background: #ff4d4d;
+    font-size: 24px;
+    background: #333;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
+    z-index: 2000;
+}
+
+/* Menu latéral caché */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background: white;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+    padding: 10px;
+    z-index: 1500;
+}
+
+/* Boutons À propos et Quitter */
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #f1f1f1;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background: #ddd;
+}
+
+/* Quand le menu est ouvert */
+.sidebar.open {
+    left: 0;
 }
 
 /* Mode plein écran */
@@ -127,3 +161,26 @@ iframe {
     display: block;
 }
 
+/* Écran de chargement */
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+/* Image d’accueil */
+#welcome-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
