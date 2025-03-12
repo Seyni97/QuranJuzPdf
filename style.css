@@ -12,9 +12,11 @@ body {
 
 /* 🔹 Menu Burger */
 .menu-container {
-    position: fixed;
-    top: 10px;
-    left: 10px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    font-size: 30px;
     z-index: 100;
 }
 
